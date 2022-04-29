@@ -1,0 +1,65 @@
+{    
+    "defaults":
+    {
+
+
+            "colours":
+            {
+                "normal_bg": "#25292e",
+                "hovered_bg": "#35393e",
+                "disabled_bg": "#25292e",
+                "selected_bg": "#25292e",
+                "active_bg": "#193784",
+                "normal_text": "#black",
+                "hovered_text": "#FFFFFF",
+                "selected_text": "#FFFFFF",
+                "disabled_text": "#6d736f",
+                "active_text": "#black",
+                "normal_border": "#AAAAAA",
+                "hovered_border": "#B0B0B0",
+                "disabled_border": "#808080",
+                "selected_border": "#8080B0",
+                "active_border": "#8080B0",
+                "normal_text_shadow": "#10101070",
+                "hovered_text_shadow": "#10101070",
+                "disabled_text_shadow": "#10101070",
+                "selected_text_shadow": "#10101070",
+                "active_text_shadow": "#10101070"
+            }
+            
+},
+
+    "@accept_buttons":
+    {
+        "colours":
+        {
+            "normal_bg": "green",
+            "hovered_bg": "white"
+        }
+    },
+
+    "@decline_buttons":
+    {
+        "colours":
+        {
+            "normal_bg": "red",
+            "hovered_bg": "white"
+        }
+    },
+
+    "@infotext":
+    {
+        "colours":
+        {
+            "dark_bg":"white",
+            "normal_text": "black"
+        }
+    },
+    "@warntext":
+    {
+        "colours":
+        {
+            "dark_bg":"red"
+        }
+    }
+}
