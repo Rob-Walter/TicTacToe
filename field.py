@@ -67,8 +67,8 @@ class Field:
             self.boardSurface.blit(self.pawn.draw(),(position[0],position[1]))
 
     def checkMouseHover(self, event, currentTurnPlayer):
-        if(self.pawn != None):
-            if(self.surface.get_rect(topleft=((globals.boardStartingPointX + self.x),(globals.boardStartingPointY + self.y))).collidepoint(event.pos) and self.pawn.getTeam() == currentTurnPlayer.getTeam()):
+        if(self.pawn == None):
+            if(self.surface.get_rect(topleft=((globals.boardStartingPointX + self.x),(globals.boardStartingPointY + self.y))).collidepoint(event.pos)):
                 self.isHovered = True
             else:
                 self.isHovered = False

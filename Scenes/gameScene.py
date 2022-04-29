@@ -42,9 +42,9 @@ class GameScene(Scene):
 
         elif self.currentTurnPlayer == self.playerWhite and self.playerBlackMovable or not self.playerWhiteMovable:
             self.currentTurnPlayer = self.playerBlack
-            result = minmax.minimax(self.board,None,None, 3, True)
+            result = minmax.minimax(self.board,None, 2, True)
             print("RESULT: ", result)
-            self.board.move(result[2],result[3])
+            self.board.move(result[2])
             self.board.checkForWinOrDraw()
             self.switchCurrentTurnPlayer()    
 
@@ -64,10 +64,10 @@ class GameScene(Scene):
         for event in events:
             if event.type == pygame.MOUSEMOTION:
                     self.board.moveMouse(event, self.currentTurnPlayer)
-            elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 self.board.mousePressed(event, self.currentTurnPlayer)
-            elif event.type == pygame.MOUSEBUTTONUP:
-                self.board.mouseReleased(event, self.currentTurnPlayer)
+            # elif event.type == pygame.MOUSEBUTTONUP:
+            #     self.board.mouseReleased(event, self.currentTurnPlayer)
             elif event.type == pygame.USEREVENT:
                 if hasattr(event, 'user_type'):
                     if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
