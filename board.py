@@ -7,9 +7,10 @@ import pygame
 
 class Board:
 
+    FIELDCOLOR = (219, 219, 219)
     WHITE = (255,255,255)
     BLACK = (0,0,0)
-    def __init__(self, width, height) -> None:
+    def __init__(self, width, height, isLoaded, loadData = None) -> None:
         self.width = width
         self.height = height
         self.surface = pygame.Surface((self.width, self.height))
@@ -20,23 +21,20 @@ class Board:
         for columnIndex in range(0,self.columns):
             column = []
             for rowIndex in range(0,self.rows):
-                if(columnIndex % 2 == 0):
-                    if (rowIndex % 2 == 0):
-                        fieldColor = self.WHITE
-                    else:
-                        fieldColor = self.BLACK          
-                else:
-                    if (rowIndex % 2 == 0):
-                        fieldColor = self.BLACK
-                    else:
-                        fieldColor = self.WHITE
-                column.append(Field(((self.width / self.rows) * rowIndex), ((self.height / self.columns) * columnIndex),(self.width / self.rows),(self.height / self.columns),fieldColor))
+                column.append(Field(((self.width / self.rows) * rowIndex), ((self.height / self.columns) * columnIndex),(self.width / self.rows),(self.height / self.columns),self.FIELDCOLOR))
             self.fieldArray2D.append(column)
-        #self.initializeNewGame()
 
+        if isLoaded:
+            self.initializeLoadGame(loadData)
 
     def get2dArray(self):
         return self.fieldArray2D
+
+
+    def initializeLoadGame(self, pawnArray):
+        for pawn in pawnArray:
+            field = self.fieldArray2D[pawn[3]][pawn[4]]
+            field.addPawn(Pawn(pawn[2], field.getPosition()[0],field.getPosition()[1]))
 
     # def initializeNewGame(self):
     #     whitePlayerColumn = self.fieldArray2D[0]
@@ -63,8 +61,9 @@ class Board:
                     print("result",result)
                     if result:
                         currentField.addPawn(Pawn(currentTurnPlayer.getTeam() , field.getPosition()[0] , field.getPosition()[1]))
-                        self.checkForWinOrDraw()
-                        pygame.event.post(playerMoved)
+                        field.markAsHovered(False)
+                        if not self.checkForWinOrDraw():
+                            pygame.event.post(playerMoved)
                        
         
 
@@ -132,7 +131,7 @@ class Board:
                         if(first and second and third):
                             if not isSimulated:
                                 pygame.event.post(createWinEvent(color))
-                                return
+                                return True
                             return ("win", color)
                     if(columnIndex < 3):
                         first:boolean = False
@@ -150,7 +149,7 @@ class Board:
                         if(first and second and third):
                             if not isSimulated:
                                 pygame.event.post(createWinEvent(color))
-                                return
+                                return True
                             return ("win", color)
                     if(rowIndex<3 and columnIndex <3):
                         first:boolean = False
@@ -168,7 +167,7 @@ class Board:
                         if(first and second and third):
                             if not isSimulated:
                                 pygame.event.post(createWinEvent(color))
-                                return
+                                return True
                             return ("win", color)
 
                     if(rowIndex>2 and columnIndex <3):
@@ -187,13 +186,16 @@ class Board:
                         if(first and second and third):
                             if not isSimulated:
                                 pygame.event.post(createWinEvent(color))
-                                return
+                                return True
                             return ("win", color)
         if emptyField == 0:
             if not isSimulated:
-                pygame.event.post(createWinEvent(color))
-                return
+                pygame.event.post(createDrawEvent())
+                return True
             return ("draw","")
+
+        if not isSimulated:
+            return False
         return("","")
         
 

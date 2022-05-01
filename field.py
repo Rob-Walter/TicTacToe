@@ -81,6 +81,7 @@ class Field:
 
     def draw(self):
         pygame.draw.rect(self.surface,self.color,pygame.Rect(0,0,self.width,self.height))
+        pygame.draw.rect(self.surface,(self.color[0]-30,self.color[1]-30,self.color[2]-30),pygame.Rect(0,0,self.width,self.height), 3)
         if (self.isHovered == True):
             pygame.draw.rect(self.surface,globals.fieldHighLightColor,pygame.Rect(0,0,self.width,self.height), 3)
         if (self.isMovePossible == True):

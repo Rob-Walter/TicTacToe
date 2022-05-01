@@ -3,7 +3,7 @@ import os
 
 class Pawn:
 
-    WIDTH, HEIGHT = 50 ,50
+    WIDTH, HEIGHT = 70 ,70
 
     def __init__(self,team,x : int,y : int):
         self.team = team
@@ -25,9 +25,9 @@ class Pawn:
     
     def setSprite(self):
         if(self.team == "white"):
-            self.sprite = pygame.image.load(os.path.join("assets", "pawn_white.png"))
+            self.sprite = pygame.image.load(os.path.join("assets", "circle.png"))
         elif(self.team == "black"):
-            self.sprite = pygame.image.load(os.path.join("assets", "pawn_black.png"))
+            self.sprite = pygame.image.load(os.path.join("assets", "cross.png"))
         self.sprite = pygame.transform.scale(self.sprite, self.getSize())
 
     def unsetSprite(self):

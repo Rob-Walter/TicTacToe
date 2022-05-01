@@ -5,36 +5,59 @@
 
             "colours":
             {
-                "normal_bg": "#25292e",
-                "hovered_bg": "#35393e",
+                "normal_bg": "#eab333",
+                "hovered_bg": "#ead5a4",
                 "disabled_bg": "#25292e",
                 "selected_bg": "#25292e",
                 "active_bg": "#193784",
-                "normal_text": "#black",
-                "hovered_text": "#FFFFFF",
+
+                "normal_text": "white",
+                "hovered_text": "#black",
                 "selected_text": "#FFFFFF",
                 "disabled_text": "#6d736f",
                 "active_text": "#black",
-                "normal_border": "#AAAAAA",
+
+                "normal_border": "black",
                 "hovered_border": "#B0B0B0",
                 "disabled_border": "#808080",
                 "selected_border": "#8080B0",
                 "active_border": "#8080B0",
+
                 "normal_text_shadow": "#10101070",
                 "hovered_text_shadow": "#10101070",
                 "disabled_text_shadow": "#10101070",
                 "selected_text_shadow": "#10101070",
                 "active_text_shadow": "#10101070"
             }
+
             
-},
+    },
 
     "@accept_buttons":
     {
+        
         "colours":
         {
-            "normal_bg": "green",
-            "hovered_bg": "white"
+            "normal_bg": "#eab333",
+            "hovered_bg": "#ead5a4",
+
+            "normal_text": "white",
+            "hovered_text": "#black",
+
+            "normal_border": "black"
+        },
+
+        "misc":
+        {
+            "border_width": "1",
+            "shadow_width": "3",
+            "tool_tip_delay": "1.0",
+            "state_transitions":
+            {
+                "normal_hovered": "0.3",
+                "hovered_normal": "0.7"
+            }
+
         }
     },
 
@@ -60,6 +83,32 @@
         "colours":
         {
             "dark_bg":"red"
+        }
+    },
+
+    "@rulestext":
+    {
+        "colours":
+        {
+            "dark_bg":"white",
+            "normal_border": "#999999",
+            "normal_text": "black"
+        },
+
+        "misc":
+        {
+            "text_vert_alignment": "center",
+            "text_horz_aligment": "center",
+            "padding": "75,5"
+        }
+
+
+    },
+    "@saveentry": {
+        "colours":
+        {
+            "dark_bg":"white",
+            "normal_text": "black"
         }
     }
 }
