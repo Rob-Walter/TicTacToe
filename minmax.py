@@ -1,22 +1,20 @@
 from copy import deepcopy
 from locale import currency
 from board import Board
-
+import eval
 import pygame
-
 #position -> der Status des Boards also die Position der Steine
 #depth -> wie tief man in den Tree vordringt (die bestmöglichen Züge vorraussagen)
 #maximizing_player -> boolean | gucken ob maximieren oder minimieren | wenn maximizing_player = false => minimieren
 #game -> ist das Game was gespielt wird
-def minimax(initialBoard, initialMove, depth, maximizing_player,alpha, beta): #alpha, beta
-
+def minimax(initialBoard, initialMove, depth, maximizing_player,alpha , beta): #alpha, beta
     # board.is_human_turn = not maximizing_player
     # children = board.get_all_possible_moves()
 
 #erstmal testen ob das Game noch läuft bzw. vorbei ist
     winOrDrawCheck = initialBoard.checkForWinOrDraw(True)
     if depth == 0 or winOrDrawCheck[0] == "win" or winOrDrawCheck[0] == "draw":
-        score = initialBoard.evaluate()
+        score = eval.evaluate(initialBoard)
         if maximizing_player:
             score -= depth * 1000
         else:
