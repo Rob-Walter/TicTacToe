@@ -14,8 +14,14 @@ def minimax(initialBoard, initialMove, depth, maximizing_player): #alpha, beta
     # children = board.get_all_possible_moves()
 
 #erstmal testen ob das Game noch läuft bzw. vorbei ist
-    if depth == 0:
-        return initialBoard, initialBoard.evaluate(),  initialMove
+    winOrDrawCheck = initialBoard.checkForWinOrDraw(True)
+    if depth == 0 or winOrDrawCheck[0] == "win" or winOrDrawCheck[0] == "draw":
+        score = initialBoard.evaluate()
+        if maximizing_player:
+            score -= depth * 1000
+        else:
+            score += depth * 1000
+        return initialBoard, score,  initialMove
 
     
 

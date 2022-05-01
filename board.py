@@ -1,4 +1,3 @@
-from asyncio.windows_events import INFINITE
 from numbers import Number
 from xmlrpc.client import boolean
 from field import Field
@@ -109,10 +108,13 @@ class Board:
     #         pygame.event.post(playerMoved)
        
 
-    def checkForWinOrDraw(self):
+    def checkForWinOrDraw(self, isSimulated = False):
+        emptyField = 0
         for columnIndex, column in enumerate(self.fieldArray2D):
             for rowIndex, field in enumerate(column):
-                if(field.getPawn() != None):
+                if(field.getPawn() == None):
+                    emptyField += 1
+                else:
                     pawn = field.getPawn()  
                     color =pawn.getTeam() 
                     if(rowIndex<3):
@@ -129,8 +131,10 @@ class Board:
                             if(self.fieldArray2D[columnIndex][rowIndex+3].getPawn().getTeam() ==color):
                                 third = True               
                         if(first and second and third):
-                            pygame.event.post(createWinEvent(color))
-                            return
+                            if not isSimulated:
+                                pygame.event.post(createWinEvent(color))
+                                return
+                            return ("win", color)
                     if(columnIndex < 3):
                         first:boolean = False
                         second: boolean = False
@@ -145,8 +149,10 @@ class Board:
                             if(self.fieldArray2D[columnIndex+3][rowIndex].getPawn().getTeam() ==color):
                                 third = True               
                         if(first and second and third):
-                            pygame.event.post(createWinEvent(color))
-                            return
+                            if not isSimulated:
+                                pygame.event.post(createWinEvent(color))
+                                return
+                            return ("win", color)
                     if(rowIndex<3 and columnIndex <3):
                         first:boolean = False
                         second: boolean = False
@@ -161,8 +167,10 @@ class Board:
                             if(self.fieldArray2D[columnIndex+3][rowIndex+3].getPawn().getTeam() ==color):
                                 third = True               
                         if(first and second and third):
-                            pygame.event.post(createWinEvent(color))
-                            return
+                            if not isSimulated:
+                                pygame.event.post(createWinEvent(color))
+                                return
+                            return ("win", color)
 
                     if(rowIndex>2 and columnIndex <3):
                         first:boolean = False
@@ -178,8 +186,16 @@ class Board:
                             if(self.fieldArray2D[columnIndex+3][rowIndex-3].getPawn().getTeam() ==color):
                                 third = True               
                         if(first and second and third):
-                            pygame.event.post(createWinEvent(color))
-                            return
+                            if not isSimulated:
+                                pygame.event.post(createWinEvent(color))
+                                return
+                            return ("win", color)
+        if emptyField == 0:
+            if not isSimulated:
+                pygame.event.post(createWinEvent(color))
+                return
+            return ("draw","")
+        return("","")
         
 
     def draw(self):
@@ -214,9 +230,20 @@ class Board:
                                 third = True               
                         if(first and second and third):
                             if(color == "white"):
-                                return float('-inf')
+                                score += -1000000.0
                             if(color == "black"):
-                                return float('+inf')
+                                score += 1000000.0
+                        elif (first and second):
+                            if(color == "white"):
+                                score += -100000.0
+                            if(color == "black"):
+                                score += 100000.0
+                        elif(first):
+                            if(color == "white"):
+                                score += -10000.0
+                            if(color == "black"):
+                                score += 10000.0
+
                     if(columnIndex < 3):
                         first:boolean = False
                         second: boolean = False
@@ -232,9 +259,19 @@ class Board:
                                 third = True               
                         if(first and second and third):
                             if(color == "white"):
-                                return float('-inf')
+                                score += -1000000.0
                             if(color == "black"):
-                                return float('+inf')
+                                score += 1000000.0
+                        elif (first and second):
+                            if(color == "white"):
+                                score += -100000.0
+                            if(color == "black"):
+                                score += 100000.0
+                        elif(first):
+                            if(color == "white"):
+                                score += -10000.0
+                            if(color == "black"):
+                                score += 10000.0
                     if(rowIndex<3 and columnIndex <3):
                         first:boolean = False
                         second: boolean = False
@@ -250,9 +287,19 @@ class Board:
                                 third = True               
                         if(first and second and third):
                             if(color == "white"):
-                                return float('-inf')
+                                score += -1000000.0
                             if(color == "black"):
-                                return float('+inf')
+                                score += 1000000.0
+                        elif (first and second):
+                            if(color == "white"):
+                                score += -100000.0
+                            if(color == "black"):
+                                score += 100000.0
+                        elif(first):
+                            if(color == "white"):
+                                score += -10000.0
+                            if(color == "black"):
+                                score += 10000.0
 
                     if(rowIndex>2 and columnIndex <3):
                         first:boolean = False
@@ -269,10 +316,20 @@ class Board:
                                 third = True               
                         if(first and second and third):
                             if(color == "white"):
-                                return float('-inf')
+                                score += -1000000.0
                             if(color == "black"):
-                                return float('+inf')
-        score = countBlack - countWhite
+                                score += 1000000.0
+                        elif (first and second):
+                            if(color == "white"):
+                                score += -100000.0
+                            if(color == "black"):
+                                score += 100000.0
+                        elif(first):
+                            if(color == "white"):
+                                score += -10000.0
+                            if(color == "black"):
+                                score += 10000.0
+        #score = countBlack - countWhite
         return score
 
     def get_all_pices(self, color):
