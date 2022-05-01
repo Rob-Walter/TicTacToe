@@ -4,7 +4,6 @@ from field import Field
 from pawn import Pawn
 from customEvents import playerMoved, createWinEvent, createDrawEvent, createImmobilizeEvent
 import pygame
-import globals
 
 class Board:
 
@@ -206,7 +205,7 @@ class Board:
             self.surface.blit(self.tempPawnSurface[0] ,self.tempPawnSurface[1])
         return self.surface
 
-    def evaluate(self, initialMove):
+    def evaluate(self):
         twoInARowValue = 10000.0
         threeInARowValue = 25000.0
         fourInARowValue = 40000.0
@@ -334,6 +333,7 @@ class Board:
         #score = countBlack - countWhite
         return score
 
+   
     def get_all_pices(self, color):
         allPices=[]
         for rowIndex, column in enumerate(self.fieldArray2D):
