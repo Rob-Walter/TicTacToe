@@ -206,15 +206,17 @@ class Board:
             self.surface.blit(self.tempPawnSurface[0] ,self.tempPawnSurface[1])
         return self.surface
 
-    def evaluate(self):
-        countBlack:int = 0
+    def evaluate(self, initialMove):
+        twoInARowValue = 10000.0
+        threeInARowValue = 25000.0
+        fourInARowValue = 40000.0
         countWhite:int = 0
         score :int = 0
         for columnIndex, column in enumerate(self.fieldArray2D):
             for rowIndex, field in enumerate(column):
                 if(field.getPawn() != None):
-                    pawn = field.getPawn()  
-                    color =pawn.getTeam() 
+                    pawn = field.getPawn()
+                    color = pawn.getTeam()
                     if(rowIndex<3):
                         first:boolean = False
                         second: boolean = False
@@ -230,19 +232,19 @@ class Board:
                                 third = True               
                         if(first and second and third):
                             if(color == "white"):
-                                score += -1000000.0
+                                score += -fourInARowValue
                             if(color == "black"):
-                                score += 1000000.0
+                                score += fourInARowValue
                         elif (first and second):
                             if(color == "white"):
-                                score += -100000.0
+                                score += -threeInARowValue
                             if(color == "black"):
-                                score += 100000.0
+                                score += threeInARowValue
                         elif(first):
                             if(color == "white"):
-                                score += -10000.0
+                                score += -twoInARowValue
                             if(color == "black"):
-                                score += 10000.0
+                                score += twoInARowValue
 
                     if(columnIndex < 3):
                         first:boolean = False
@@ -259,19 +261,19 @@ class Board:
                                 third = True               
                         if(first and second and third):
                             if(color == "white"):
-                                score += -1000000.0
+                                score += -fourInARowValue
                             if(color == "black"):
-                                score += 1000000.0
+                                score += fourInARowValue
                         elif (first and second):
                             if(color == "white"):
-                                score += -100000.0
+                                score += -threeInARowValue
                             if(color == "black"):
-                                score += 100000.0
+                                score += threeInARowValue
                         elif(first):
                             if(color == "white"):
-                                score += -10000.0
+                                score += -twoInARowValue
                             if(color == "black"):
-                                score += 10000.0
+                                score += twoInARowValue
                     if(rowIndex<3 and columnIndex <3):
                         first:boolean = False
                         second: boolean = False
@@ -287,19 +289,19 @@ class Board:
                                 third = True               
                         if(first and second and third):
                             if(color == "white"):
-                                score += -1000000.0
+                                score += -fourInARowValue
                             if(color == "black"):
-                                score += 1000000.0
+                                score += fourInARowValue
                         elif (first and second):
                             if(color == "white"):
-                                score += -100000.0
+                                score += -threeInARowValue
                             if(color == "black"):
-                                score += 100000.0
+                                score += threeInARowValue
                         elif(first):
                             if(color == "white"):
-                                score += -10000.0
+                                score += -twoInARowValue
                             if(color == "black"):
-                                score += 10000.0
+                                score += twoInARowValue
 
                     if(rowIndex>2 and columnIndex <3):
                         first:boolean = False
@@ -316,19 +318,19 @@ class Board:
                                 third = True               
                         if(first and second and third):
                             if(color == "white"):
-                                score += -1000000.0
+                                score += -fourInARowValue
                             if(color == "black"):
-                                score += 1000000.0
+                                score += fourInARowValue
                         elif (first and second):
                             if(color == "white"):
-                                score += -100000.0
+                                score += -threeInARowValue
                             if(color == "black"):
-                                score += 100000.0
+                                score += threeInARowValue
                         elif(first):
                             if(color == "white"):
-                                score += -10000.0
+                                score += -twoInARowValue
                             if(color == "black"):
-                                score += 10000.0
+                                score += twoInARowValue
         #score = countBlack - countWhite
         return score
 
