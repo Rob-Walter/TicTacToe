@@ -1,16 +1,18 @@
 def evaluate(board):
-    countBlack:int = 0
+    twoInARowValue = 10000.0
+    threeInARowValue = 25000.0
+    fourInARowValue = 40000.0
     countWhite:int = 0
     score :int = 0
     for columnIndex, column in enumerate(board.fieldArray2D):
         for rowIndex, field in enumerate(column):
             if(field.getPawn() != None):
-                pawn = field.getPawn()  
-                color =pawn.getTeam() 
+                pawn = field.getPawn()
+                color = pawn.getTeam()
                 if(rowIndex<3):
-                    first:boolean = False
-                    second: boolean = False
-                    third: boolean = False
+                    first = False
+                    second = False
+                    third = False
                     if(board.fieldArray2D[columnIndex][rowIndex+1].getPawn()):
                         if(board.fieldArray2D[columnIndex][rowIndex+1].getPawn().getTeam() ==color):
                             first = True
@@ -22,24 +24,24 @@ def evaluate(board):
                             third = True               
                     if(first and second and third):
                         if(color == "white"):
-                            score += -1000000.0
+                            score += -fourInARowValue
                         if(color == "black"):
-                            score += 1000000.0
+                            score += fourInARowValue
                     elif (first and second):
                         if(color == "white"):
-                            score += -100000.0
+                            score += -threeInARowValue
                         if(color == "black"):
-                            score += 100000.0
+                            score += threeInARowValue
                     elif(first):
                         if(color == "white"):
-                            score += -10000.0
+                            score += -twoInARowValue
                         if(color == "black"):
-                            score += 10000.0
+                            score += twoInARowValue
 
                 if(columnIndex < 3):
-                    first:boolean = False
-                    second: boolean = False
-                    third: boolean = False
+                    first = False
+                    second = False
+                    third = False
                     if(board.fieldArray2D[columnIndex+1][rowIndex].getPawn()):
                         if(board.fieldArray2D[columnIndex+1][rowIndex].getPawn().getTeam() ==color):
                             first = True
@@ -51,23 +53,23 @@ def evaluate(board):
                             third = True               
                     if(first and second and third):
                         if(color == "white"):
-                            score += -1000000.0
+                            score += -fourInARowValue
                         if(color == "black"):
-                            score += 1000000.0
+                            score += fourInARowValue
                     elif (first and second):
                         if(color == "white"):
-                            score += -100000.0
+                            score += -threeInARowValue
                         if(color == "black"):
-                            score += 100000.0
+                            score += threeInARowValue
                     elif(first):
                         if(color == "white"):
-                            score += -10000.0
+                            score += -twoInARowValue
                         if(color == "black"):
-                            score += 10000.0
+                            score += twoInARowValue
                 if(rowIndex<3 and columnIndex <3):
-                    first:boolean = False
-                    second: boolean = False
-                    third: boolean = False
+                    first = False
+                    second = False
+                    third = False
                     if(board.fieldArray2D[columnIndex+1][rowIndex+1].getPawn()):
                         if(board.fieldArray2D[columnIndex+1][rowIndex+1].getPawn().getTeam() ==color):
                             first = True
@@ -79,24 +81,24 @@ def evaluate(board):
                             third = True               
                     if(first and second and third):
                         if(color == "white"):
-                            score += -1000000.0
+                            score += -fourInARowValue
                         if(color == "black"):
-                            score += 1000000.0
+                            score += fourInARowValue
                     elif (first and second):
                         if(color == "white"):
-                            score += -100000.0
+                            score += -threeInARowValue
                         if(color == "black"):
-                            score += 100000.0
+                            score += threeInARowValue
                     elif(first):
                         if(color == "white"):
-                            score += -10000.0
+                            score += -twoInARowValue
                         if(color == "black"):
-                            score += 10000.0
+                            score += twoInARowValue
 
                 if(rowIndex>2 and columnIndex <3):
-                    first:boolean = False
-                    second: boolean = False
-                    third: boolean = False
+                    first = False
+                    second = False
+                    third = False
                     if(board.fieldArray2D[columnIndex+1][rowIndex-1].getPawn()):
                         if(board.fieldArray2D[columnIndex+1][rowIndex-1].getPawn().getTeam() ==color):
                             first = True
@@ -108,18 +110,19 @@ def evaluate(board):
                             third = True               
                     if(first and second and third):
                         if(color == "white"):
-                            score += -1000000.0
+                            score += -fourInARowValue
                         if(color == "black"):
-                            score += 1000000.0
+                            score += fourInARowValue
                     elif (first and second):
                         if(color == "white"):
-                            score += -100000.0
+                            score += -threeInARowValue
                         if(color == "black"):
-                            score += 100000.0
+                            score += threeInARowValue
                     elif(first):
                         if(color == "white"):
-                            score += -10000.0
+                            score += -twoInARowValue
                         if(color == "black"):
-                            score += 10000.0
+                            score += twoInARowValue
     #score = countBlack - countWhite
     return score
+
