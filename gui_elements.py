@@ -17,7 +17,7 @@ def createTextfeld(pos, text, type, manager):
     if type == globals.textboxTypes['INFO']:
         element = pygame_gui.elements.UITextBox(relative_rect=pygame.Rect(pos, (130, 50)), html_text=text, manager=manager, object_id=ObjectID(class_id=type))
     elif type == globals.textboxTypes['RULES']:
-        element = pygame_gui.elements.UITextBox(relative_rect=pygame.Rect(pos, (900, 500)), html_text=text, manager=manager, object_id=ObjectID(class_id=type))
+        element = pygame_gui.elements.UITextBox(relative_rect=pygame.Rect(pos, (600, 400)), html_text=text, manager=manager, object_id=ObjectID(class_id=type))
     elif type == globals.textboxTypes['SAVE']:
         element = pygame_gui.elements.UITextBox(relative_rect=pygame.Rect(pos, (250, 50)), html_text=text, manager=manager, object_id=ObjectID(class_id=type))
     elif type == globals.textboxTypes['DATA']:
