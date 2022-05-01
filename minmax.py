@@ -8,7 +8,7 @@ import pygame
 #depth -> wie tief man in den Tree vordringt (die bestmöglichen Züge vorraussagen)
 #maximizing_player -> boolean | gucken ob maximieren oder minimieren | wenn maximizing_player = false => minimieren
 #game -> ist das Game was gespielt wird
-def minimax(initialBoard, initialMove, depth, maximizing_player): #alpha, beta
+def minimax(initialBoard, initialMove, depth, maximizing_player,alpha, beta): #alpha, beta
 
     # board.is_human_turn = not maximizing_player
     # children = board.get_all_possible_moves()
@@ -31,10 +31,14 @@ def minimax(initialBoard, initialMove, depth, maximizing_player): #alpha, beta
         bestmove = None
         for move in get_all_moves(initialBoard, "black"): #Die Ki ist immer Schwarz
             
-            current_eval = minimax(move[0],move[1], depth - 1, False)
-            #print("current - max",current_eval)
+            current_eval = minimax(move[0],move[1], depth - 1, False, alpha, beta)
+            print("current - max",current_eval)
 
             max_eval = max(max_eval, current_eval[1])
+            alpha = max( alpha, max_eval)
+            if beta <= alpha:
+                print("beta <= alpha")
+                break
             
             if current_eval[1] == max_eval:
                 max_eval = current_eval[1]
@@ -47,9 +51,13 @@ def minimax(initialBoard, initialMove, depth, maximizing_player): #alpha, beta
         best_board = None
         bestmove = None
         for move in get_all_moves(initialBoard, "white"): #Der Player ist immer weiß
-            current_eval = minimax(move[0],move[1], depth - 1, True)
-            #print("current - min",current_eval)
+            current_eval = minimax(move[0],move[1], depth - 1, True, alpha, beta)
+            print("current - min",current_eval)
             min_eval = min(min_eval, current_eval[1])
+            beta = min( beta, min_eval)
+            if beta <= alpha:
+                print("beta <= alpha")
+                break
             if current_eval[1] == min_eval:
                 min_eval = current_eval[1]
                 best_board = move[0]
@@ -86,9 +94,3 @@ def get_all_moves(board, color):
                 new_board = simulate_move(move, temp_board, color)
                 moves.append((new_board,move))
     return moves
-
-
-
- # alpha = max(alpha, current_eval)
-            # if beta <= alpha:
-            #     break
