@@ -16,9 +16,9 @@ def minimax(initialBoard, initialMove, depth, maximizing_player,alpha , beta): #
     if depth == 0 or winOrDrawCheck[0] == "win" or winOrDrawCheck[0] == "draw":
         score = eval.evaluate(initialBoard)
         if maximizing_player:
-            score -= depth * 100000
+            score += (depth * 10000)
         else:
-            score += depth * 100000
+            score -= (depth * 10000)
         return initialBoard, score,  initialMove
 
     

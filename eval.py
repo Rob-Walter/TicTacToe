@@ -1,7 +1,8 @@
 def evaluate(board):
     twoInARowValue = 10000.0
     threeInARowValue = 25000.0
-    fourInARowValue = 40000.0
+    fourInARowValue = 400000.0
+    centerPosition = 2000.0
     countWhite:int = 0
     score :int = 0
     for columnIndex, column in enumerate(board.fieldArray2D):
@@ -9,6 +10,11 @@ def evaluate(board):
             if(field.getPawn() != None):
                 pawn = field.getPawn()
                 color = pawn.getTeam()
+                if(rowIndex > 1 and rowIndex < 4 and columnIndex > 1 and rowIndex < 4):
+                    if(color == "white"):
+                        score += -centerPosition
+                    if(color == "black"):
+                        score += centerPosition
                 if(rowIndex<3):
                     first = False
                     second = False

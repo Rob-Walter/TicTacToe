@@ -57,7 +57,7 @@ class GameScene(Scene):
 
         elif self.currentTurnPlayer == self.playerWhite:
             self.currentTurnPlayer = self.playerBlack
-            result = minmax.minimax(self.board,None, 2, True,float("-inf"), float("+inf"),)
+            result = minmax.minimax(self.board,None, 2, False,float("-inf"), float("+inf"),)
             print("RESULT: ", result)
             self.board.move(result[2],"black")
             self.board.checkForWinOrDraw()
