@@ -44,7 +44,7 @@ class GameScene(Scene):
             self.currentTurnPlayer = self.playerBlack
             result = minmax.minimax(self.board,None, 2, True)
             print("RESULT: ", result)
-            self.board.move(result[2])
+            self.board.move(result[2],"black")
             self.board.checkForWinOrDraw()
             self.switchCurrentTurnPlayer()    
 

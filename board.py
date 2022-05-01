@@ -352,9 +352,9 @@ class Board:
         return result
 
     
-    def move(self,move):
-        print("move",move)
-        self.fieldArray2D[move[0]][move[1]].addPawn(Pawn("black",move[0],move[1]) )
+    def move(self,move,color):
+        #print("move",move)
+        self.fieldArray2D[move[0]][move[1]].addPawn(Pawn(color,move[0],move[1]) )
         return
 
 
